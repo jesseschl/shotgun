@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-il1wfc(eau$2gpg)oq^8=m8@8%w9*iw#zu3gi@lc=&a*+dabmm
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
     "shotgun-lr11.onrender.com"
+    
 ]
 
 

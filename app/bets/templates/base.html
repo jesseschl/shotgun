@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,25 +7,36 @@
     <title>My Basic Webpage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url("{% static 'lol.png' %}");
+            background-size: 800px 600px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home">Marks Bad At Poker</a></li>
+                <li><a href="#about">Mills Might Be Worse At Poker</a></li>
+                <li><a href="#services">If You Need A Real Pro Contact Jesse</a></li>
+                <li><a href="#contact">Jesse a.k.a Big Dog</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="home">
-            <h1>Mark and Mills are slightly above average at poker</h1>
+            <h1></h1>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 My Company</p>
+        <p>&copy; 2025 Jesses Sweet Webpage</p>
     </footer>
     <script src="scripts.js"></script>
 </body>
