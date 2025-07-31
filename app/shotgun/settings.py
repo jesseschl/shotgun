@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "shotgun-lr11.onrender.com"
+    "shotgun-lr11.onrender.com",
+    "shotguntracker.pro"
     
 ]
 
