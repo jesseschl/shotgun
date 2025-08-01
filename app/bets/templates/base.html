@@ -8,7 +8,7 @@
     <title>My Modern Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
 </head>
 <body>
     <header>
@@ -26,17 +26,29 @@
             <h1>Shotgun Tracker</h1>
             <table>
             <thead>
-                <tr>
-                <th>Player Name</th>
-                <th>Shotguns Taken</th>
-                </tr>
+            <tr>
+            <th>Player Name</th>
+            <th>Shotguns Taken</th>
+            <th>Shotguns Owed</th>
+            </tr>
             </thead>
             <tbody>
             {% for player in players %}
-                <tr>
+            <tr>
                 <td>{{ player.name }}</td>
                 <td>{{ player.shotguns_taken }}</td>
-                </tr>
+                <td>
+                    {{ player.shotguns_owed }}
+                    <form method="post" action="{% url 'update_shotguns_owed' player.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" name="action" value="decrement">-</button>
+                    </form>
+                    <form method="post" action="{% url 'update_shotguns_owed' player.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" name="action" value="increment">+</button>
+                    </form>
+                </td>
+            </tr>
             {% endfor %}
             </tbody>
             </table>

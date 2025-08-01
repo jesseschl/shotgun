@@ -7,3 +7,7 @@ class Player(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def update_shotguns_owed(self, num_shotguns):
+        self.shotguns_owed += num_shotguns
+        self.save()
