@@ -2,16 +2,16 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Player
 from django.shortcuts import redirect, get_object_or_404
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, requires_csrf_token
 
 
-@csrf_protect
+@requires_csrf_token
 def index(request):
     players = Player.objects.all()
     return render(request, 'base.html', {'players': players})
 
 
-@csrf_protect
+@requires_csrf_token
 def update_shotguns_owed(request, player_id):
     player = get_object_or_404(Player, id=player_id)
     if request.method == "POST":
