@@ -4,6 +4,8 @@ from .models import Player
 from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 
+
+@csrf_protect
 def index(request):
     players = Player.objects.all()
     return render(request, 'base.html', {'players': players})
