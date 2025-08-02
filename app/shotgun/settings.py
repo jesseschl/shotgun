@@ -33,7 +33,6 @@ ALLOWED_HOSTS = [
     
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -71,6 +70,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://shotguntracker.pro",
+    "https://shotgun-lr11.onrender.com"
 ]
 
 WSGI_APPLICATION = 'shotgun.wsgi.application'
