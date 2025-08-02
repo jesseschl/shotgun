@@ -9,6 +9,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
+    <style>
+        body {
+        background-image: url("{% static 'background.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        }
+        main {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(255,255,255,0.85);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 32px;
+            margin: 0; /* Remove margin so centering works */
+        }
+        .players {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 24px;
+        }
+        .player-tile {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .player-info {
+            flex: 1;
+        }
+        .player-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .player-actions form {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,34 +74,27 @@
     <main>
         <section id="home">
             <h1>Shotgun Tracker</h1>
-            <table>
-            <thead>
-            <tr>
-            <th>Player Name</th>
-            <th>Shotguns Taken</th>
-            <th>Shotguns Owed</th>
-            </tr>
-            </thead>
-            <tbody>
+            <div class="players">
             {% for player in players %}
-            <tr>
-                <td>{{ player.name }}</td>
-                <td>{{ player.shotguns_taken }}</td>
-                <td>
-                    {{ player.shotguns_owed }}
-                    <form method="post" action="{% url 'update_shotguns_owed' player.id %}" style="display:inline;">
+            <div class="player-tile">
+                <div class="player-info">
+                    <strong>{{ player.name }}</strong><br>
+                    Taken: {{ player.shotguns_taken }}<br>
+                    Owed: {{ player.shotguns_owed }}
+                </div>
+                <div class="player-actions">
+                    <form method="post" action="{% url 'update_shotguns_owed' player.id %}">
                         {% csrf_token %}
                         <button type="submit" name="action" value="decrement">-</button>
                     </form>
-                    <form method="post" action="{% url 'update_shotguns_owed' player.id %}" style="display:inline;">
+                    <form method="post" action="{% url 'update_shotguns_owed' player.id %}">
                         {% csrf_token %}
                         <button type="submit" name="action" value="increment">+</button>
                     </form>
-                </td>
-            </tr>
+                </div>
+            </div>
             {% endfor %}
-            </tbody>
-            </table>
+        </div>
         </section>
     </main>
     <footer>
